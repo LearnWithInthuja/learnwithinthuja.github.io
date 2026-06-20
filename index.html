@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Explore the power of personalized learning, making education engaging, and the transformative benefits of private tutoring.">
+  <title>Aura Academy | The Art of Modern Learning</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <style>
+    /* ==========================================
+       DESIGN SYSTEM & VARIABLES
+       ========================================== */
+    :root {
+      --bg-dark: #0B0F19;
+      --bg-card: rgba(17, 24, 39, 0.7);
+      --bg-card-hover: rgba(23, 31, 50, 0.85);
+      --border-color: rgba(255, 255, 255, 0.08);
+      --border-color-hover: rgba(255, 255, 255, 0.18);
+
+      /* Harmonious Palette */
+      --primary: #8B5CF6;
+      /* Indigo Violet */
+      --primary-glow: rgba(139, 92, 246, 0.35);
+      --secondary: #06B6D4;
+      /* Electric Cyan */
+      --secondary-glow: rgba(6, 182, 212, 0.35);
+      --accent: #F43F5E;
+      /* Rose Coral */
+      --accent-glow: rgba(244, 63, 94, 0.35);
+
+      --text-main: #F3F4F6;
+      --text-muted: #9CA3AF;
+      --text-white: #FFFFFF;
+
+      --font-title: 'Outfit', sans-serif;
+      --font-body: 'Inter', sans-serif;
+
+      --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* ==========================================
+       BASE STYLES & RESET
+       ========================================== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Ambient Background Glows */
+    body::before {
+      content: '';
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      top: -200px;
+      right: -100px;
+      background: radial-gradient(circle, var(--primary-glow) 0%, rgba(11, 15, 25, 0) 70%);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    body::after {
+      content: '';
+      position: absolute;
+      width: 700px;
+      height: 700px;
+      top: 600px;
+      left: -200px;
+      background: radial-gradient(circle, var(--secondary-glow) 0%, rgba(11, 15, 25, 0) 70%);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* Selection Highlight */
+    ::selection {
+      background-color: var(--primary);
+      color: var(--text-white);
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg-dark);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 5px;
+      border: 2px solid var(--bg-dark);
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--primary);
+    }
+
+    /* ==========================================
+       TYPOGRAPHY & UTILITIES
+       ========================================== */
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: var(--font-title);
+      font-weight: 700;
+      color: var(--text-white);
+      line-height: 1.25;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, var(--text-white) 30%, var(--primary) 70%, var(--secondary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .gradient-text-alt {
+      background: linear-gradient(135deg, #FF80B5 0%, #9089FC 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 3.5rem;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      margin: 0.75rem auto 0;
+      border-radius: 2px;
+    }
+
+    /* ==========================================
+       NAVIGATION BAR
+       ========================================== */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(11, 15, 25, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      transition: var(--transition-smooth);
+    }
+
+    header.scrolled {
+      padding: 0.5rem 0;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 4.5rem;
+    }
+
+    .logo {
+      font-family: var(--font-title);
+      font-weight: 800;
+      font-size: 1.5rem;
+      color: var(--text-white);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo-dot {
+      width: 10px;
+      height: 10px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: var(--transition-smooth);
+      position: relative;
+      padding: 0.25rem 0;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      transition: var(--transition-smooth);
+    }
+
+    .nav-links a:hover {
+      color: var(--text-white);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      display: inline-block;
+      padding: 0.6rem 1.25rem;
+      background: linear-gradient(135deg, var(--primary) 0%, #6D28D9 100%);
+      color: var(--text-white);
+      font-weight: 600;
+      border-radius: 30px;
+      text-decoration: none;
+      box-shadow: 0 4px 15px var(--primary-glow);
+      transition: var(--transition-smooth);
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(139, 92, 246, 0.5);
+    }
+
+    /* Mobile Menu Toggle */
+    .menu-toggle {
+      display: none;
+      cursor: pointer;
+      background: none;
+      border: none;
+      color: var(--text-white);
+    }
+
+    /* ==========================================
+       HERO SECTION
+       ========================================== */
+    .hero {
+      padding: 10rem 0 6rem;
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .hero-text h1 {
+      font-size: 3.8rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-text p {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      margin-bottom: 2.5rem;
+      max-width: 580px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.9rem 2rem;
+      font-weight: 600;
+      font-size: 1rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: var(--transition-smooth);
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary) 0%, #6D28D9 100%);
+      color: var(--text-white);
+      box-shadow: 0 4px 20px var(--primary-glow);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(139, 92, 246, 0.55);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text-white);
+      border: 1px solid var(--border-color);
+      backdrop-filter: blur(8px);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: var(--border-color-hover);
+      transform: translateY(-3px);
+    }
+
+    /* Photo Container Frame */
+    .hero-image-wrapper {
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-glow-card {
+      position: relative;
+      border-radius: 20px;
+      padding: 10px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.02) 100%);
+      border: 1px solid var(--border-color);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      overflow: hidden;
+      max-width: 100%;
+      transition: var(--transition-smooth);
+    }
+
+    .hero-glow-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 20px;
+      padding: 2px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .hero-glow-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 30px 60px rgba(139, 92, 246, 0.25);
+    }
+
+    .hero-image {
+      width: 100%;
+      max-width: 420px;
+      height: auto;
+      border-radius: 12px;
+      display: block;
+      transition: var(--transition-smooth);
+    }
+
+    /* Float Animation */
+    .float-anim {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-15px);
+      }
+    }
+
+    /* ==========================================
+       STATS ROW
+       ========================================== */
+    .stats-row {
+      display: flex;
+      justify-content: space-around;
+      background: rgba(17, 24, 39, 0.5);
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+      backdrop-filter: blur(8px);
+      padding: 3rem 0;
+      margin-top: 2rem;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: var(--font-title);
+      font-size: 2.75rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--text-white), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.25rem;
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+    }
+
+    /* ==========================================
+       INSIGHTS SECTION (The 3 Topics)
+       ========================================== */
+    .insights {
+      padding: 8rem 0;
+    }
+
+    .insights-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.25rem;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 2.75rem 2.25rem;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      transition: var(--transition-smooth);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--card-accent);
+      transition: var(--transition-smooth);
+    }
+
+    .card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--border-color-hover);
+      transform: translateY(-8px);
+      box-shadow: 0 15px 40px var(--card-glow);
+    }
+
+    .card-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 12px;
+      background: var(--card-icon-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 2rem;
+      color: var(--card-accent-plain);
+      transition: var(--transition-smooth);
+    }
+
+    .card:hover .card-icon {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: auto;
+      /* Push footer spacing if needed */
+    }
+
+    /* Assigning dynamic properties via css values */
+    .card-learning {
+      --card-accent: linear-gradient(to right, var(--primary), var(--secondary));
+      --card-accent-plain: var(--primary);
+      --card-glow: rgba(139, 92, 246, 0.15);
+      --card-icon-bg: rgba(139, 92, 246, 0.1);
+    }
+
+    .card-fun {
+      --card-accent: linear-gradient(to right, var(--secondary), #10B981);
+      --card-accent-plain: var(--secondary);
+      --card-glow: rgba(6, 182, 212, 0.15);
+      --card-icon-bg: rgba(6, 182, 212, 0.1);
+    }
+
+    .card-tutoring {
+      --card-accent: linear-gradient(to right, var(--accent), #F43F5E);
+      --card-accent-plain: var(--accent);
+      --card-glow: rgba(244, 63, 94, 0.15);
+      --card-icon-bg: rgba(244, 63, 94, 0.1);
+    }
+
+    /* ==========================================
+       CONTACT & DETAILS SECTION
+       ========================================== */
+    .contact-section {
+      padding: 8rem 0;
+      background: radial-gradient(circle at bottom right, rgba(6, 182, 212, 0.08) 0%, rgba(11, 15, 25, 0) 60%);
+      border-top: 1px solid var(--border-color);
+      position: relative;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 5rem;
+    }
+
+    .contact-info h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-info p {
+      color: var(--text-muted);
+      margin-bottom: 3rem;
+      font-size: 1.05rem;
+    }
+
+    .info-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .info-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--secondary);
+    }
+
+    .info-details h4 {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .info-details p {
+      margin: 0;
+      color: var(--text-white);
+      font-weight: 500;
+      font-size: 1.05rem;
+    }
+
+    /* Social Icons Styling */
+    .social-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .social-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      background: rgba(255, 255, 255, 0.02);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      transition: var(--transition-smooth);
+      text-decoration: none;
+    }
+
+    .social-btn:hover {
+      color: var(--text-white);
+      background: var(--primary);
+      border-color: var(--primary);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px var(--primary-glow);
+    }
+
+    /* Form Card styling */
+    .form-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 3rem;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+
+    .form-control {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 0.9rem 1.25rem;
+      font-family: var(--font-body);
+      color: var(--text-white);
+      font-size: 0.95rem;
+      transition: var(--transition-smooth);
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+      background: rgba(255, 255, 255, 0.05);
+      box-shadow: 0 0 10px rgba(139, 92, 246, 0.15);
+    }
+
+    textarea.form-control {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-card button {
+      width: 100%;
+      background: linear-gradient(135deg, var(--primary) 0%, #6D28D9 100%);
+      color: var(--text-white);
+      border: none;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px var(--primary-glow);
+      transition: var(--transition-smooth);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .form-card button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(139, 92, 246, 0.45);
+    }
+
+    .form-card button:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Success Toast Animation */
+    .success-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(11, 15, 25, 0.85);
+      backdrop-filter: blur(12px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: var(--transition-smooth);
+    }
+
+    .success-overlay.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .success-modal {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 3rem 4rem;
+      text-align: center;
+      max-width: 500px;
+      width: 90%;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      transform: translateY(20px);
+      transition: var(--transition-smooth);
+    }
+
+    .success-overlay.show .success-modal {
+      transform: translateY(0);
+    }
+
+    .success-icon {
+      width: 72px;
+      height: 72px;
+      background: rgba(16, 185, 129, 0.1);
+      border: 2px solid #10B981;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #10B981;
+      margin: 0 auto 1.5rem;
+    }
+
+    .success-modal h3 {
+      font-size: 1.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .success-modal p {
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+
+    /* ==========================================
+       FOOTER
+       ========================================== */
+    footer {
+      background: #060910;
+      padding: 2.5rem 0;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-text {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .footer-nav {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .footer-nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: var(--transition-smooth);
+    }
+
+    .footer-nav a:hover {
+      color: var(--text-white);
+    }
+
+    /* ==========================================
+       SCROLL ANIMATIONS (Reveal On Scroll)
+       ========================================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .delay-100 {
+      transition-delay: 0.1s;
+    }
+
+    .delay-200 {
+      transition-delay: 0.2s;
+    }
+
+    .delay-300 {
+      transition-delay: 0.3s;
+    }
+
+    /* ==========================================
+       RESPONSIVE DESIGN (Media Queries)
+       ========================================== */
+    @media (max-width: 1024px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        text-align: center;
+      }
+
+      .hero-text h1 {
+        font-size: 3rem;
+      }
+
+      .hero-text p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-actions {
+        justify-content: center;
+      }
+
+      .insights-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        /* Can build toggle layout if desired */
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .stats-row {
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .form-card {
+        padding: 2rem 1.5rem;
+      }
+
+      .success-modal {
+        padding: 2rem;
+      }
+
+      .footer-container {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER / NAVIGATION -->
+  <header id="header">
+    <div class="container nav-container">
+      <a href="#" class="logo">
+        <span class="logo-dot"></span>LearnWithInthuja
+      </a>
+      <ul class="nav-links">
+        <li><a href="#about">What is Learning</a></li>
+        <li><a href="#fun">Making it Fun</a></li>
+        <li><a href="#tutoring">Why Tutoring</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a href="#contact" class="nav-cta">Enroll Today</a>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero" id="hero">
+    <div class="container hero-grid">
+      <div class="hero-text reveal">
+        <h1>Unlocking <span class="gradient-text">Human Potential</span> Through Tailored Path</h1>
+        <p>Individual attention is essential in a child’s learning journey because every student learns at a different
+          pace, with different strengths, challenges, and interests. When teaching is tailored to the child rather than
+          forced into a one-size-fits-all approach, it improves understanding, builds confidence, strengthens focus, and
+          creates a more positive attitude toward learning. Personalized guidance also helps identify gaps early,
+          provide the right support at the right time, and encourage each child to grow into an independent, motivated
+          learner.</p>
+        <div class="hero-actions">
+          <a href="#about" class="btn btn-primary">Discover More</a>
+          <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+        </div>
+      </div>
+
+      <!-- HERO IMAGE / PLACEHOLDER PHOTO FRAME -->
+      <div class="hero-image-wrapper reveal delay-200">
+        <div class="hero-glow-card float-anim">
+          <img src="assets/learning-hero.png" alt="Aura Academy Learning illustration" class="hero-image" id="hero-img">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS HIGHLIGHTS -->
+  <div class="stats-row reveal">
+    <div class="container"
+      style="display: flex; width: 100%; justify-content: space-around; flex-wrap: wrap; gap: 2rem;">
+      <div class="stat-item">
+        <div class="stat-number">1-on-1</div>
+        <div class="stat-label">Focused Mentoring</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">100%</div>
+        <div class="stat-label">Tailored Pace</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">Fun</div>
+        <div class="stat-label">Methodologies</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INSIGHTS SECTION (WHAT IS LEARNING / MAKING FUN / WHY TUTORING) -->
+  <section class="insights" id="insights">
+    <div class="container">
+      <h2 class="section-title reveal">Educational Philosophies</h2>
+
+      <div class="insights-grid">
+
+        <!-- CARD 1: WHAT IS LEARNING -->
+        <article class="card card-learning reveal" id="about">
+          <div class="card-icon">
+            <!-- Book Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
+          </div>
+          <h3>What is learning?</h3>
+          <p>Learning is a dynamic, lifelong journey of acquiring knowledge, skills, and values through active
+            exploration—not passive textbook absorption. It fuels curiosity, critical thinking, and problem-solving,
+            empowering people to adapt, grow intellectually, and unlock creativity. At its core, learning catalyzes
+            human evolution and personal transformation, opening endless opportunities.</p>
+        </article>
+
+        <!-- CARD 2: MAKING IT FUN -->
+        <article class="card card-fun reveal delay-100" id="fun">
+          <div class="card-icon">
+            <!-- Sparkles Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path
+                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m11.314 11.314l.707.707M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10z">
+              </path>
+            </svg>
+          </div>
+          <h3>Making learning fun</h3>
+          <p>Learning becomes exciting when we shift from rote memorization to immersive, interactive experiences.
+            Gamification, hands-on experiments, and storytelling turn abstract concepts into discoveries. Allowing
+            exploration, questioning without fear, and collaboration fosters wonder. Technology engages minds with
+            visuals, puzzles, and feedback. When learning is a playful puzzle, it becomes a rewarding, enjoyable,
+            lifelong passion.</p>
+        </article>
+
+        <!-- CARD 3: WHY PRIVATE TUTORING -->
+        <article class="card card-tutoring reveal delay-200" id="tutoring">
+          <div class="card-icon">
+            <!-- Award/Target Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <circle cx="12" cy="12" r="6"></circle>
+              <circle cx="12" cy="12" r="2"></circle>
+            </svg>
+          </div>
+          <h3>Why private tutoring?</h3>
+          <p>Private tutoring offers personalized education rarely achievable in crowded classrooms. Every student
+            learns differently, and a dedicated mentor tailors teaching style, pace, and curriculum to match unique
+            strengths and challenges. This targeted guidance clarifies complex topics, builds confidence, improves study
+            habits, and fosters academic resilience. With one-on-one attention, students receive immediate feedback and
+            ask questions freely in a supportive environment. Ultimately, tutoring bridges gaps, inspires self-belief,
+            and guides students toward academic goals.
+          </p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT & DETAILS SECTION -->
+  <section class="contact-section" id="contact">
+    <div class="container contact-grid">
+
+      <!-- Contact Info Details -->
+      <div class="contact-info reveal">
+        <h2>Let's Start the <span class="gradient-text-alt">Adventure</span></h2>
+        <p>Ready to experience a personalized learning path? Reach out today to match with a dedicated tutor or arrange
+          an introductory evaluation.</p>
+
+        <div class="info-list">
+          <!-- Email Info -->
+          <div class="info-item">
+            <div class="info-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+            </div>
+            <div class="info-details">
+              <h4>Email Address</h4>
+              <p>inthujajothi@gmail.com</p>
+            </div>
+          </div>
+
+          <!-- Location Info -->
+          <div class="info-item">
+            <div class="info-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+            </div>
+            <div class="info-details">
+              <h4>Location</h4>
+              <p>Chennai, India</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Contact Form -->
+      <div class="form-wrapper reveal delay-200">
+        <!-- Hidden iframe to handle submission target without page reload or CORS errors -->
+        <iframe name="hidden_iframe" id="hidden_iframe" style="display: none;"></iframe>
+
+        <form class="form-card" id="contact-form" action="https://api.web3forms.com/submit" method="POST"
+          target="hidden_iframe">
+          <!-- Web3Forms Configuration -->
+          <input type="hidden" name="access_key" value="1b1d4dc2-bb60-41eb-8e7f-27b8cf4dfa7b">
+          <input type="hidden" name="from_name" value="Aura Academy Website">
+          <input type="hidden" name="subject" id="email-subject" value="New Aura Academy Inquiry">
+          <!-- Honeypot Spam Protection -->
+          <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" class="form-control" placeholder="John Doe" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" class="form-control" placeholder="johndoe@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <div style="display: flex; gap: 0.75rem;">
+              <select id="country-code" name="country_code" class="form-control"
+                style="width: 130px; background: rgb(21, 28, 43); flex-shrink: 0;" required>
+                <option value="+91" selected>🇮🇳 +91 (IN)</option>
+                <option value="+1">🇺🇸 +1 (US)</option>
+                <option value="+44">🇬🇧 +44 (UK)</option>
+                <option value="+61">🇦🇺 +61 (AU)</option>
+                <option value="+1">🇨🇦 +1 (CA)</option>
+                <option value="+49">🇩🇪 +49 (DE)</option>
+                <option value="+33">🇫🇷 +33 (FR)</option>
+                <option value="+81">🇯🇵 +81 (JP)</option>
+                <option value="+86">🇨🇳 +86 (CN)</option>
+                <option value="+27">🇿🇦 +27 (ZA)</option>
+                <option value="+971">🇦🇪 +971 (AE)</option>
+                <option value="+65">🇸🇬 +65 (SG)</option>
+                <option value="+64">🇳🇿 +64 (NZ)</option>
+                <option value="+60">🇲🇾 +60 (MY)</option>
+                <option value="+34">🇪🇸 +34 (ES)</option>
+                <option value="+39">🇮🇹 +39 (IT)</option>
+                <option value="+31">🇳🇱 +31 (NL)</option>
+                <option value="+41">🇨🇭 +41 (CH)</option>
+                <option value="+966">🇸🇦 +966 (SA)</option>
+                <option value="+82">🇰🇷 +82 (KR)</option>
+                <option value="+886">🇹🇼 +886 (TW)</option>
+                <option value="+46">🇸🇪 +46 (SE)</option>
+                <option value="+47">🇳🇴 +47 (NO)</option>
+                <option value="+45">🇩🇰 +45 (DK)</option>
+              </select>
+              <input type="tel" id="phone" name="phone" class="form-control" placeholder="98765 43210" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="subject">What are you looking for?</label>
+            <select id="subject" name="category" class="form-control" required style="background: rgb(21, 28, 43);">
+              <option value="" disabled selected>Select an option</option>
+              <option value="tutoring">1-on-1 Academic Tutoring</option>
+              <option value="fun">Learning Workshops</option>
+              <option value="other">General Inquiry</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Message Details</label>
+            <textarea id="message" name="message" class="form-control" placeholder="Tell us about your requirements..."
+              required></textarea>
+          </div>
+          <button type="submit" id="submit-btn">
+            Send Message
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              style="margin-left: 4px;">
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SUCCESS DIALOG OVERLAY -->
+  <div class="success-overlay" id="success-overlay">
+    <div class="success-modal">
+      <div class="success-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </div>
+      <h3>Inquiry Received!</h3>
+      <p>Thank you for reaching out to Aura Academy. A curriculum expert will email you within 24 hours to schedule your
+        evaluation.</p>
+      <button class="btn btn-primary" id="success-close" style="width: 100%;">Return to Site</button>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-container">
+      <div class="footer-text">
+        &copy; 2026 Aura Academy. Designed for high-end tutoring & personal development.
+      </div>
+      <div class="footer-nav">
+        <a href="#hero">Back to Top</a>
+        <a href="#about">Philosophy</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- CORE INTERACTIVE SCRIPTS -->
+  <script>
+    // 1. Shrink header on scroll
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // 2. Scroll Reveal Animations (IntersectionObserver)
+    const reveals = document.querySelectorAll('.reveal');
+    const revealOnScroll = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target); // Trigger once
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: "0px 0px -50px 0px"
+    });
+
+    reveals.forEach(el => revealOnScroll.observe(el));
+
+    // 3. Dynamic Form Handling
+    const contactForm = document.getElementById('contact-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const successOverlay = document.getElementById('success-overlay');
+    const successClose = document.getElementById('success-close');
+
+    contactForm.addEventListener('submit', (e) => {
+      // Note: We do NOT prevent default so the browser submits standardly to the hidden iframe
+
+      // Dynamic email subject line
+      const name = document.getElementById('name').value;
+      document.getElementById('email-subject').value = `New Aura Academy Inquiry from ${name}`;
+
+      // Visual Feedback: Loading
+      submitBtn.disabled = true;
+      const originalBtnText = submitBtn.innerHTML;
+      submitBtn.innerHTML = 'Sending... <span style="animation: spin 1s linear infinite; display: inline-block;">✦</span>';
+
+      const iframe = document.getElementById('hidden_iframe');
+
+      // Listen for the form submission to finish inside the iframe
+      iframe.onload = () => {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnText;
+
+        // Show success modal
+        successOverlay.classList.add('show');
+        contactForm.reset();
+
+        // Clear onload to prevent duplicate triggers
+        iframe.onload = null;
+      };
+    });
+
+    successClose.addEventListener('click', () => {
+      successOverlay.classList.remove('show');
+    });
+
+    // Spin animation for loading state
+    const styleSheet = document.styleSheets[0];
+    styleSheet.insertRule(`
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    `, styleSheet.cssRules.length);
+  </script>
+</body>
+
+</html>
