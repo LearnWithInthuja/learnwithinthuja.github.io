@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description"
     content="Explore the power of personalized learning, making education engaging, and the transformative benefits of private tutoring.">
-  <title>Learn With Inthuja</title>
+  <title>Online Tutoring</title>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -841,6 +841,40 @@
     }
 
     /* ==========================================
+       HAMBURGER NAV MENU (Mobile)
+       ========================================== */
+    .menu-toggle {
+      display: none;
+      cursor: pointer;
+      background: none;
+      border: none;
+      color: var(--text-white);
+      padding: 0.5rem;
+      z-index: 1100;
+    }
+
+    .hamburger-bar {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--text-white);
+      border-radius: 2px;
+      transition: var(--transition-smooth);
+      margin: 5px 0;
+    }
+
+    /* Animate hamburger to X */
+    .menu-toggle.open .hamburger-bar:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    .menu-toggle.open .hamburger-bar:nth-child(2) {
+      opacity: 0;
+    }
+    .menu-toggle.open .hamburger-bar:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* ==========================================
        RESPONSIVE DESIGN (Media Queries)
        ========================================== */
     @media (max-width: 1024px) {
@@ -864,7 +898,7 @@
       }
 
       .insights-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
         gap: 2rem;
       }
 
@@ -872,35 +906,178 @@
         grid-template-columns: 1fr;
         gap: 4rem;
       }
+
+      .section-title {
+        font-size: 2rem;
+      }
     }
 
     @media (max-width: 768px) {
+      /* Nav */
       .nav-links {
         display: none;
-        /* Can build toggle layout if desired */
+        position: fixed;
+        top: 4.5rem;
+        left: 0;
+        width: 100%;
+        background: rgba(11, 15, 25, 0.97);
+        backdrop-filter: blur(12px);
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        padding: 1.5rem 0;
+        border-bottom: 1px solid var(--border-color);
+        z-index: 999;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links li {
+        width: 100%;
+        text-align: center;
+      }
+
+      .nav-links a {
+        display: block;
+        padding: 0.9rem 2rem;
+        font-size: 1.05rem;
       }
 
       .menu-toggle {
         display: block;
       }
 
+      .nav-cta {
+        display: none;
+      }
+
+      /* Hero */
+      .hero {
+        padding: 7rem 0 4rem;
+        min-height: auto;
+      }
+
+      .hero-text h1 {
+        font-size: 2.25rem;
+      }
+
+      .hero-text p {
+        font-size: 1rem;
+      }
+
+      .btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.95rem;
+      }
+
+      /* Stats */
       .stats-row {
         flex-direction: column;
         gap: 2rem;
       }
 
-      .form-card {
-        padding: 2rem 1.5rem;
+      /* Insights */
+      .insights {
+        padding: 5rem 0;
       }
 
+      .insights-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .section-title {
+        font-size: 1.75rem;
+        margin-bottom: 2.5rem;
+      }
+
+      /* Contact */
+      .contact-section {
+        padding: 5rem 0;
+      }
+
+      .contact-info h2 {
+        font-size: 2rem;
+      }
+
+      /* Phone field: stack country code + number vertically on small screens */
+      .phone-field-row {
+        flex-direction: column !important;
+        gap: 0.5rem !important;
+      }
+
+      .phone-field-row select {
+        width: 100% !important;
+      }
+
+      /* Form */
+      .form-card {
+        padding: 2rem 1.25rem;
+      }
+
+      /* Success modal */
       .success-modal {
         padding: 2rem;
       }
 
+      /* Footer */
       .footer-container {
         flex-direction: column;
         gap: 1.5rem;
         text-align: center;
+      }
+
+      .footer-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+      }
+
+      /* Container padding */
+      .container {
+        padding: 0 1.25rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-text h1 {
+        font-size: 1.85rem;
+      }
+
+      .hero-image {
+        max-width: 280px;
+      }
+
+      .stat-number {
+        font-size: 2rem;
+      }
+
+      .card {
+        padding: 2rem 1.5rem;
+      }
+
+      .section-title {
+        font-size: 1.5rem;
+      }
+
+      .contact-info h2 {
+        font-size: 1.65rem;
+      }
+
+      .form-card {
+        padding: 1.5rem 1rem;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .btn {
+        width: 100%;
+        max-width: 280px;
       }
     }
   </style>
@@ -921,6 +1098,11 @@
         <li><a href="#contact">Contact</a></li>
       </ul>
       <a href="#contact" class="nav-cta">Enroll Today</a>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation">
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </button>
     </div>
   </header>
 
@@ -928,7 +1110,7 @@
   <section class="hero" id="hero">
     <div class="container hero-grid">
       <div class="hero-text reveal">
-        <h1>Unlocking <span class="gradient-text">Human Potential</span> Through Tailored Path</h1>
+        <h1><span class="gradient-text">Online 1-on-1 Tutoring</span></h1>
         <p>Individual attention is essential in a child’s learning journey because every student learns at a different
           pace, with different strengths, challenges, and interests. When teaching is tailored to the child rather than
           forced into a one-size-fits-all approach, it improves understanding, builds confidence, strengthens focus, and
@@ -944,7 +1126,7 @@
       <!-- HERO IMAGE / PLACEHOLDER PHOTO FRAME -->
       <div class="hero-image-wrapper reveal delay-200">
         <div class="hero-glow-card float-anim">
-          <img src="assets/learning-hero.png" alt="Learning illustration" class="hero-image" id="hero-img">
+          <img src="assets/learning-hero.png" alt="Private Tutoring" class="hero-image" id="hero-img">
         </div>
       </div>
     </div>
@@ -1042,9 +1224,8 @@
 
       <!-- Contact Info Details -->
       <div class="contact-info reveal">
-        <h2>Let's Start the <span class="gradient-text-alt">Adventure</span></h2>
-        <p>Ready to experience a personalized learning path? Reach out today to match with a dedicated tutor or arrange
-          an introductory evaluation.</p>
+        <h2>Let's Start the <span class="gradient-text-alt">Learning</span></h2>
+        <p>Ready to experience a personalized learning path? Reach out today for enquiries.</p>
 
         <div class="info-list">
           <!-- Email Info -->
@@ -1266,6 +1447,23 @@
         100% { transform: rotate(360deg); }
       }
     `, styleSheet.cssRules.length);
+
+    // Hamburger mobile nav toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('open');
+      navLinks.classList.toggle('open');
+    });
+
+    // Close menu on nav link click
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        menuToggle.classList.remove('open');
+        navLinks.classList.remove('open');
+      });
+    });
   </script>
 </body>
 
